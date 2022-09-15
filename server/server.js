@@ -32,7 +32,6 @@ const results = await db.query("select * from transactions");
     });
     } catch (err) {
         console.log(err);
-        
     }
     
 });
@@ -50,7 +49,7 @@ app.get("/api/v1/transactions/:id", async (req, res) => {
         },
     });
     } catch (err) {
-
+        console.log(err);
     }
 
 });
@@ -63,18 +62,18 @@ app.post("/api/v1/transactions", async (req, res) => {
 
     try {
 
-    const results = await db.query("INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ($1, $2, $3, $4, $5, $6)", 
+    const results = await db.query("INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ($1, $2, $3, $4, $5, $6) returning *", 
     [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id]);
     console.log(results);
 
     res.status(201).json({
         status: "success",
         data: {
-
+            transaction: results.rows[0],
         },
     });
     } catch (err) {
-
+        console.log(err);
     }
 
 
@@ -83,15 +82,23 @@ app.post("/api/v1/transactions", async (req, res) => {
 
 //Edit transaction
 
-app.put("/api/v1/transactions/:id/edit", (req, res) => {
-    console.log(req.params.id);
-    console.log(req.body);
+app.put("/api/v1/transactions/:id/edit", async (req, res) => {
+    const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isIncome = $4, category = $5, user_id = $6 returning *", 
+    [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id]);
+    console.log(results);
     res.status(200).json({
         status: "success",
         data: {
-
+            transaction: results.rows[0],
         },
     });
+    try {
+
+    } catch (err) {
+        console.log(err);
+    }
+
+    
 });
 
 
