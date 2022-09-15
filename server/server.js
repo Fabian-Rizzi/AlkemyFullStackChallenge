@@ -75,16 +75,15 @@ app.post("/api/v1/transactions", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-
-
 });
 
 
 //Edit transaction
 
 app.put("/api/v1/transactions/:id/edit", async (req, res) => {
-    const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isIncome = $4, category = $5, user_id = $6 returning *", 
-    [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id]);
+    try {
+    const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isIncome = $4, category = $5, user_id = $6 where id = $7 returning *", 
+    [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id, req.params.id]);
     console.log(results);
     res.status(200).json({
         status: "success",
@@ -92,27 +91,24 @@ app.put("/api/v1/transactions/:id/edit", async (req, res) => {
             transaction: results.rows[0],
         },
     });
-    try {
-
     } catch (err) {
         console.log(err);
     }
-
-    
 });
-
 
 //Delete transaction
 
-app.delete("/api/v1/transactions/:id", (req, res) => {
-    res.status(204).json({
-        status: "success"
-    });
+app.delete("/api/v1/transactions/:id", async (req, res) => {
+
+    try { 
+        const results = db.query('DELETE FROM transactions WHERE id = $1', [req.params.id]);
+        res.status(204).json({
+            status: "success"
+        });
+    } catch (err) {
+        console.log(err);
+    }
 });
-
-
-
-
 
 
 const port = process.env.PORT || 3000;
