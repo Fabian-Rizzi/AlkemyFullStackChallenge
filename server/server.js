@@ -42,12 +42,13 @@ const results = await db.query("select * from transactions");
 app.get("/api/v1/transactions/:id", async (req, res) => {
     console.log(req.params.id);
     try {
-        const results = await db.query("select * from transactions where ID = $1", [req.params.id]);
+
+        const transactions = await db.query("select * from transactions where ID = $1", [req.params.id]);
         // console.log(results.rows[0])
         res.status(200).json({
         status: "success",
         data: {
-
+            transactions: transactions.rows[0]
         },
     });
     } catch (err) {

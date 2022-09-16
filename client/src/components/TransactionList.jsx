@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
 
 const TransactionList = (props) => {
-    const {transactions, setTransactions} = useContext(TransactionsContext)
+    const {transactions, setTransactions} = useContext(TransactionsContext);
+    let navigate = useNavigate();
 
     useEffect( ()  => {
         const fetchData = async () =>{
@@ -34,6 +36,12 @@ const TransactionList = (props) => {
         }
     }
 
+    const handleUpdate = (id) => {
+        // e.stopPropagation();
+        navigate(`/transactions/${id}/update`);
+
+    };
+
   return (
     <div className='list-group'>
         <table className="table table-hover table-dark">
@@ -57,7 +65,7 @@ const TransactionList = (props) => {
                         <td>{transaction.day}</td>
                         <td>{String(transaction.isincome)}</td>
                         <td>{transaction.category}</td>
-                        <td><button className="btn btn-warning">Update</button></td>
+                        <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
                     </tr>
                     )
