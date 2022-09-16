@@ -2,12 +2,13 @@ import React from 'react'
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
 
 const UpdateTransaction = (props) => {
     const { id } = useParams();
+    let navigate = useNavigate();
     const { transactions } = useContext(TransactionsContext); 
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
@@ -84,7 +85,7 @@ const UpdateTransaction = (props) => {
                 category,
                 user_id: 1
             });
-            console.log(updatedTransaction);
+            navigate("/");
         }
 
   return (

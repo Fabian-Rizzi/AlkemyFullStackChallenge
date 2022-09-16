@@ -58,8 +58,8 @@ const TransactionList = (props) => {
 
   return (
     <div className='list-group'>
-        <table className="table table-hover table-dark">
-            <thead>
+        <table className="table table-hover table-striped">
+            <thead className='thead-dark'>
                 <tr className="bg-primary">
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>
