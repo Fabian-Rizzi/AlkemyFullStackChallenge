@@ -16,7 +16,8 @@ const AddTransaction = () => {
                 amount,
                 day,
                 category,
-                isincome
+                isincome: 't',
+                user_id: 1
             });
             console.log(response);
         } catch (err) {
