@@ -1,6 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useContext } from 'react';
 
-const TransactionList = () => {
+import TransactionFinder from '../apis/TransactionFinder';
+import { TransactionsContext } from '../context/TransactionsContext';
+
+const TransactionList = (props) => {
+    const {transactions, setTransactions} = useContext(TransactionsContext)
+
+    useEffect( ()  => {
+        const fetchData = async () =>{
+            
+        
+        try {
+            const response = await TransactionFinder.get("/");
+            setTransactions(response.data.data.transactions)
+        } catch (err)
+        {
+            console.log(err);
+        }
+        };
+        fetchData();
+    },[])
+
   return (
     <div className='list-group'>
         <table className="table table-hover table-dark">
@@ -16,7 +37,21 @@ const TransactionList = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {transactions && transactions.map(transaction => {
+                    return (
+                    <tr key={transaction.id}>
+                        <td>{transaction.name}</td>
+                        <td>{transaction.amount}</td>
+                        <td>{transaction.day}</td>
+                        <td>{String(transaction.isincome)}</td>
+                        <td>{transaction.category}</td>
+                        <td><button className="btn btn-warning">Update</button></td>
+                        <td><button className="btn btn-danger">Delete</button></td>
+                    </tr>
+                    )
+
+                })}
+                {/* <tr>
                     <td>Nafta</td>
                     <td>1500</td>
                     <td>15/09/22</td>
@@ -33,7 +68,7 @@ const TransactionList = () => {
                     <td>Category</td>
                     <td><button className="btn btn-warning">Update</button></td>
                     <td><button className="btn btn-danger">Delete</button></td>
-                </tr>
+                </tr> */}
             </tbody>
         </table>
     </div>
