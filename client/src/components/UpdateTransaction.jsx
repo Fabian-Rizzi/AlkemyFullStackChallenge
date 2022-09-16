@@ -74,6 +74,18 @@ const UpdateTransaction = (props) => {
             };
             fetchData();
         }, []);
+        const handleSubmit = async (e) => {
+            e.preventDefault()
+            const updatedTransaction = await TransactionFinder.put(`/${id}`, {
+                name,
+                amount,
+                day,
+                isincome,
+                category,
+                user_id: 1
+            });
+            console.log(updatedTransaction);
+        }
 
   return (
     <div>
@@ -114,7 +126,7 @@ const UpdateTransaction = (props) => {
                         <option value="false">Expense</option>
                     </select>
                 </div>
-                <button className='btn btn-primary'>Submit</button>
+                <button type='submit' onClick={handleSubmit} className='btn btn-primary'>Submit</button>
         </form>
     </div>
   )

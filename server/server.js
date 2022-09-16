@@ -83,7 +83,7 @@ app.post("/api/v1/transactions", async (req, res) => {
 
 //Edit transaction
 
-app.put("/api/v1/transactions/:id/edit", async (req, res) => {
+app.put("/api/v1/transactions/:id", async (req, res) => {
     try {
     const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isincome = $4, category = $5, user_id = $6 where id = $7 returning *", 
     [req.body.name, req.body.amount, req.body.day, req.body.isincome, req.body.category, req.body.user_id, req.params.id]);
