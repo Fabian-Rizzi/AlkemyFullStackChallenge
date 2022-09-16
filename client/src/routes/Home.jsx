@@ -1,6 +1,7 @@
 import React from 'react'
 import AddTransaction from '../components/AddTransaction'
 import Header from '../components/Header'
+import ShowBalance from '../components/ShowBalance'
 import TransactionList from '../components/TransactionList'
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
         <Header />
         <AddTransaction />
+        <ShowBalance />
         <TransactionList />
     </div>
   )

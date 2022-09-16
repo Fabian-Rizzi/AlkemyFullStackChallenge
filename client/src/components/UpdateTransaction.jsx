@@ -75,6 +75,13 @@ const UpdateTransaction = (props) => {
             };
             fetchData();
         }, []);
+
+        const goBack = () => {
+navigate("/");
+        }
+
+        
+
         const handleSubmit = async (e) => {
             e.preventDefault()
             const updatedTransaction = await TransactionFinder.put(`/${id}`, {
@@ -128,6 +135,7 @@ const UpdateTransaction = (props) => {
                     </select>
                 </div>
                 <button type='submit' onClick={handleSubmit} className='btn btn-primary'>Submit</button>
+                <button onClick={goBack} className='btn btn-primary'>Back</button>
         </form>
     </div>
   )
