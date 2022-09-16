@@ -42,6 +42,20 @@ const TransactionList = (props) => {
 
     };
 
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
+    }
+
   return (
     <div className='list-group'>
         <table className="table table-hover table-dark">
@@ -62,7 +76,7 @@ const TransactionList = (props) => {
                     <tr key={transaction.id}>
                         <td>{transaction.name}</td>
                         <td>{transaction.amount}</td>
-                        <td>{transaction.day}</td>
+                        <td>{formatDate(transaction.day)}</td>
                         <td>{String(transaction.isincome)}</td>
                         <td>{transaction.category}</td>
                         <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
