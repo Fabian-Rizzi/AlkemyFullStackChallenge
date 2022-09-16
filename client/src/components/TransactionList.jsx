@@ -20,7 +20,19 @@ const TransactionList = (props) => {
         }
         };
         fetchData();
-    },[])
+    },[]);
+
+    const handleDelete = async (id) => {
+        try{
+            const response = await TransactionFinder.delete(`/${id}`);
+            setTransactions(transactions.filter((transaction) => {
+                return transaction.id !== id
+            }))
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
   return (
     <div className='list-group'>
@@ -46,7 +58,7 @@ const TransactionList = (props) => {
                         <td>{String(transaction.isincome)}</td>
                         <td>{transaction.category}</td>
                         <td><button className="btn btn-warning">Update</button></td>
-                        <td><button className="btn btn-danger">Delete</button></td>
+                        <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
                     </tr>
                     )
 
