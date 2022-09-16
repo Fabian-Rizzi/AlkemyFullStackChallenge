@@ -64,8 +64,8 @@ app.post("/api/v1/transactions", async (req, res) => {
 
     try {
 
-    const results = await db.query("INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ($1, $2, $3, $4, $5, $6) returning *", 
-    [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id]);
+    const results = await db.query("INSERT INTO transactions (name, amount, day, isincome, category, user_id) values ($1, $2, $3, $4, $5, $6) returning *", 
+    [req.body.name, req.body.amount, req.body.day, req.body.isincome, req.body.category, req.body.user_id]);
     // console.log(results);
 
     res.status(201).json({
@@ -84,8 +84,8 @@ app.post("/api/v1/transactions", async (req, res) => {
 
 app.put("/api/v1/transactions/:id/edit", async (req, res) => {
     try {
-    const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isIncome = $4, category = $5, user_id = $6 where id = $7 returning *", 
-    [req.body.name, req.body.amount, req.body.day, req.body.isIncome, req.body.category, req.body.user_id, req.params.id]);
+    const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isincome = $4, category = $5, user_id = $6 where id = $7 returning *", 
+    [req.body.name, req.body.amount, req.body.day, req.body.isincome, req.body.category, req.body.user_id, req.params.id]);
     // console.log(results);
     res.status(200).json({
         status: "success",

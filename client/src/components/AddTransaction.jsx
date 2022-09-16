@@ -1,8 +1,11 @@
 import React from 'react'
+import { useContext } from 'react';
 import { useState } from 'react'
 import TransactionFinder from '../apis/TransactionFinder';
+import { TransactionsContext } from '../context/TransactionsContext';
 
 const AddTransaction = () => {
+    const {addTransactions} = useContext(TransactionsContext);
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [day, setDay] = useState("");
@@ -16,9 +19,10 @@ const AddTransaction = () => {
                 amount,
                 day,
                 category,
-                isincome: 't',
+                isincome,
                 user_id: 1
             });
+            addTransactions(response.data.data.transaction);
             console.log(response);
         } catch (err) {
 
