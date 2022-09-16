@@ -1,13 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
+import TransactionFinder from '../apis/TransactionFinder';
 
 const AddTransaction = () => {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
-    const [date, setDate] = useState("");
+    const [day, setDay] = useState("");
     const [category, setCategory] = useState("Select Category");
     const [isincome, setIsIncome] = useState("Income/Expense");
-  return (
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await TransactionFinder.post("/", {
+                name,
+                amount,
+                day,
+                category,
+                isincome
+            });
+            console.log(response);
+        } catch (err) {
+
+        }
+    }
+    return (
     <div className='mb-4'>
         <form action="">
             <div className="form-group row">
@@ -18,7 +34,7 @@ const AddTransaction = () => {
                     <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className='form-control' placeholder='amount'/>
                 </div>
                 <div className="col">
-                    <input type="date" value={date} onChange={e => setDate(e.target.value)} className='form-control' placeholder='date'/>
+                    <input type="date" value={day} onChange={e => setDay(e.target.value)} className='form-control' placeholder='date'/>
                 </div>
                 <div className="col">
                     <select value={category} onChange={e => setCategory(e.target.value)} className='custom-select my-1 mr-sm-5'>
@@ -37,11 +53,11 @@ const AddTransaction = () => {
                 <div className="col">
                     <select value={isincome} onChange={e => setIsIncome(e.target.value)} className='custom-select my-1 mr-sm-5'>
                         <option disabled>Income/Expense</option>
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
+                        <option value='t'>Income</option>
+                        <option value="false">Expense</option>
                     </select>
                 </div>
-                <button className="btn btn-primary ms-4">Add</button>
+                <button onClick={handleSubmit} type='submit' className="btn btn-primary ms-4">Add</button>
             </div>
         </form>
     </div>
