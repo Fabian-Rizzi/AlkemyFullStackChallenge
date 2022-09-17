@@ -38,6 +38,50 @@ const results = await db.query("select * from transactions");
     
 });
 
+//Sum all transactions where isincome = true
+
+app.get("/api/v1/transactions/incomes", async (req, res) => {
+
+    try {
+const results = await db.query("SELECT SUM(amount) FROM transactions WHERE isincome = true;");
+    //  console.log(results.rows[0].sum);
+    res.status(200).json({
+        status: "success",
+        results: results.rows.length,
+        data: {
+            transactions: results.rows[0].sum            
+        },
+    });
+    } catch (err) {
+        console.log(err);
+    }
+    
+});
+
+
+
+//Sum all transactions where isincome = false
+
+app.get("/api/v1/transactions/expenses", async (req, res) => {
+
+    try {
+const results = await db.query("SELECT SUM(amount) FROM transactions WHERE isincome = false;");
+    //  console.log(results.rows[0].sum);
+    res.status(200).json({
+        status: "success",
+        results: results.rows.length,
+        data: {
+            transactions: results.rows[0].sum            
+        },
+    });
+    } catch (err) {
+        console.log(err);
+    }
+    
+});
+
+
+
 //Get a transaction
 app.get("/api/v1/transactions/:id", async (req, res) => {
     console.log(req.params.id);
@@ -56,7 +100,6 @@ app.get("/api/v1/transactions/:id", async (req, res) => {
     }
 
 });
-
 
 //Create transaction
 
