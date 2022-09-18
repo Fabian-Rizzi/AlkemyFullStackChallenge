@@ -3,32 +3,30 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import TransactionFinder from '../apis/TransactionFinder';
-import { TransactionsContext } from '../context/TransactionsContext';
+import { TransactionsContextCopy } from '../context/TransactionsContextCopy';
 
-const TransactionList = (props) => {
-    const {transactions, setTransactions} = useContext(TransactionsContext);
+const TransactionListCopy = (props) => {
+    const {transactionsExp, setTransactionsExp} = useContext(TransactionsContextCopy);
     let navigate = useNavigate();
 
     useEffect( ()  => {
-        const fetchData = async () =>{       
+        const fetchDataExp = async () =>{
         try {
-            const response = await TransactionFinder.get("/incomes");
-            
-            setTransactions(response.data.data.transactions)
+            const response = await TransactionFinder.get("/expenses");
+            setTransactionsExp(response.data.data.transactions)
         } catch (err)
         {
             console.log(err);
-
         }
         };
-        fetchData();
+        fetchDataExp();
     },[]);
 
     const handleDelete = async (id) => {
         try{
             const response = await TransactionFinder.delete(`/${id}`);
-            setTransactions(transactions.filter((transaction) => {
-                return transaction.id !== id
+            setTransactionsExp(transactionsExp.filter((transactionExp) => {
+                return transactionExp.id !== id
             }))
             console.log(response);
         } catch (err) {
@@ -71,16 +69,16 @@ const TransactionList = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {transactions && transactions.map(transaction => {
+                {transactionsExp && transactionsExp.map(transactionExp => {
                     return (
-                    <tr key={transaction.id}>
-                        <td>{transaction.name}</td>
-                        <td>{transaction.amount}</td>
-                        <td>{formatDate(transaction.day)}</td>
-                        <td>{String(transaction.isincome)}</td>
-                        <td>{transaction.category}</td>
-                        <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
-                        <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
+                    <tr key={transactionExp.id}>
+                        <td>{transactionExp.name}</td>
+                        <td>{transactionExp.amount}</td>
+                        <td>{formatDate(transactionExp.day)}</td>
+                        <td>{String(transactionExp.isincome)}</td>
+                        <td>{transactionExp.category}</td>
+                        <td><button onClick={() => handleUpdate(transactionExp.id)} className="btn btn-warning">Update</button></td>
+                        <td><button onClick={() => handleDelete(transactionExp.id)} className="btn btn-danger">Delete</button></td>
                     </tr>
                     )
 
@@ -109,4 +107,4 @@ const TransactionList = (props) => {
   )
 }
 
-export default TransactionList
+export default TransactionListCopy

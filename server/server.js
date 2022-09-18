@@ -12,7 +12,6 @@ app.use(express.json());
 
 
 app.use((req, res, next) => {
-
     next();
 });
 
@@ -23,7 +22,7 @@ app.use((req, res, next) => {
 app.get("/api/v1/transactions", async (req, res) => {
 
     try {
-const results = await db.query("select * from transactions");
+const results = await db.query("select * from transactions ");
     // console.log(results);
     res.status(200).json({
         status: "success",
@@ -38,9 +37,55 @@ const results = await db.query("select * from transactions");
     
 });
 
-//Sum all transactions where isincome = true
+
+
+//Get all income transactions
 
 app.get("/api/v1/transactions/incomes", async (req, res) => {
+
+    try {
+const results = await db.query("select * from transactions where isincome = true");
+    // console.log(results);
+    res.status(200).json({
+        status: "success",
+        results: results.rows.length,
+        data: {
+            transactions: results.rows            
+        },
+    });
+    } catch (err) {
+        console.log(err);
+    }
+    
+});
+
+//Get all expense transactions
+
+app.get("/api/v1/transactions/expenses", async (req, res) => {
+
+    try {
+const results = await db.query("select * from transactions where isincome = false");
+    // console.log(results);
+    res.status(200).json({
+        status: "success",
+        results: results.rows.length,
+        data: {
+            transactions: results.rows            
+        },
+    });
+    } catch (err) {
+        console.log(err);
+    }
+    
+});
+
+
+
+
+
+//Sum all transactions where isincome = true
+
+app.get("/api/v1/transactions/sumincomes", async (req, res) => {
 
     try {
 const results = await db.query("SELECT SUM(amount) FROM transactions WHERE isincome = true;");
@@ -62,7 +107,7 @@ const results = await db.query("SELECT SUM(amount) FROM transactions WHERE isinc
 
 //Sum all transactions where isincome = false
 
-app.get("/api/v1/transactions/expenses", async (req, res) => {
+app.get("/api/v1/transactions/sumexpenses", async (req, res) => {
 
     try {
 const results = await db.query("SELECT SUM(amount) FROM transactions WHERE isincome = false;");

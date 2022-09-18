@@ -3,6 +3,7 @@ import AddTransaction from '../components/AddTransaction'
 import Header from '../components/Header'
 import ShowBalance from '../components/ShowBalance'
 import TransactionList from '../components/TransactionList'
+import TransactionListCopy from '../components/TransactionListCopy'
 
 const Home = () => {
   return (
@@ -11,8 +12,9 @@ const Home = () => {
         <AddTransaction />
         <ShowBalance />
         <TransactionList />
+        <TransactionListCopy />
     </div>
   )
 }
 
-export default Home
+export default Home 
