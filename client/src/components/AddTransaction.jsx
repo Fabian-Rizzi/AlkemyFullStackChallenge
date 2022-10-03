@@ -25,11 +25,10 @@ const AddTransaction = () => {
             addTransactions(response.data.data.transaction);
             console.log(response);
         } catch (err) {
-
         }
     }
     return (
-    <div className='mb-4'>
+    <div className='mb-4'>  
         <form action="">
             <div className="form-group row">
                 <div className="col">

@@ -8,6 +8,7 @@ import TransactionDetailPage from './routes/TransactionDetailPage';
 import UpdatePage from './routes/UpdatePage';
 
 const App = () => {
+    
     return (
         <TransactionsContextProvider>
             <TransactionsContextCopyProvider> 

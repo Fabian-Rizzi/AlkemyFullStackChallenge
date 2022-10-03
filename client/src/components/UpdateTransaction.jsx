@@ -8,7 +8,7 @@ import { TransactionsContext } from '../context/TransactionsContext';
 const UpdateTransaction = (props) => {
     const { id } = useParams();
     let navigate = useNavigate();
-    const { transactions } = useContext(TransactionsContext); 
+    // const { transactions } = useContext(TransactionsContext); 
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [day, setDay] = useState("");
@@ -17,35 +17,10 @@ const UpdateTransaction = (props) => {
 
         useEffect(() => {
             const fetchData = async () => {
-
-
-
                 const response = await TransactionFinder.get(`/${id}`);
-
-                const dateTime = response.data.data.transactions.day;
-                
-                // {function removeTime(date = new Date()){
-                //     return new Date(
-                //         date.getFullYear(),
-                //         date.getMonth(),
-                //         date.getDate()
-                //     );
-                // }
-                
-                // removeTime(dateTime);
-
-                // Date.getFullYear();
-                // }
-                // console.log(dateTime);
-
-
+                const dateTime = response.data.data.transactions.day;                
                 setName(response.data.data.transactions.name);
                 setAmount(response.data.data.transactions.amount);
-                // function formatDate(string){
-                //     var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-                //     return new Date(string).toLocaleDateString([],options);
-                // }
-
                 function formatDate(date) {
                     var d = new Date(date),
                         month = '' + (d.getMonth() + 1),
@@ -62,13 +37,7 @@ const UpdateTransaction = (props) => {
 
                 console.log(formatDate(dateTime));
                 setDay(formatDate(dateTime));
-                // 2022-09-15T03:00:00.000Z
-                // console.log(removeTime(new Date()));
-                // 2022-09-15           
-                // const dateTime = response.data.data.transactions.day;
 
-                // removeTime(setDay(response.data.data.transactions.day));
-                
                 setCategory(response.data.data.transactions.category);
                 setIsIncome(response.data.data.transactions.isincome);
             };
@@ -83,14 +52,14 @@ navigate("/");
 
         const handleSubmit = async (e) => {
             e.preventDefault()
-            const updatedTransaction = await TransactionFinder.put(`/${id}`, {
-                name,
-                amount,
-                day,
-                isincome,
-                category,
-                user_id: 1
-            });
+            // const updatedTransaction = await TransactionFinder.put(`/${id}`, {
+            //     name,
+            //     amount,
+            //     day,
+            //     isincome,
+            //     category,
+            //     user_id: 1
+            // });
             navigate("/");
         }
 

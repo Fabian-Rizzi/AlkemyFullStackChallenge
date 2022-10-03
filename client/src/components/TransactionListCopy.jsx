@@ -33,13 +33,14 @@ const TransactionListCopy = (props) => {
             console.log(err);
         }
     }
-
     const handleUpdate = (id) => {
         // e.stopPropagation();
         navigate(`/transactions/${id}/update`);
 
     };
 
+
+    //transforms date into sql format (YYYY-MM-DD)
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
@@ -106,5 +107,4 @@ const TransactionListCopy = (props) => {
     </div>
   )
 }
-
 export default TransactionListCopy

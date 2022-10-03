@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
+
 
 const TransactionList = (props) => {
     const {transactions, setTransactions} = useContext(TransactionsContext);
@@ -12,13 +12,11 @@ const TransactionList = (props) => {
     useEffect( ()  => {
         const fetchData = async () =>{       
         try {
-            const response = await TransactionFinder.get("/incomes");
-            
+            const response = await TransactionFinder.get("/incomes");            
             setTransactions(response.data.data.transactions)
         } catch (err)
         {
             console.log(err);
-
         }
         };
         fetchData();
@@ -35,13 +33,11 @@ const TransactionList = (props) => {
             console.log(err);
         }
     }
-
     const handleUpdate = (id) => {
         // e.stopPropagation();
         navigate(`/transactions/${id}/update`);
 
     };
-
     function formatDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),

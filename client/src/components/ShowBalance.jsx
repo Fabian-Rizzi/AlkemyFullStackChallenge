@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react'
 import TransactionFinder from '../apis/TransactionFinder';
 var balance;
 
+// 
+
 const ShowBalance = () => {
-  // const [balance, setBalance] = useState("");
+
   useEffect(() => {
     const fetchDataBalance = async () => {
-
+      try {
       const incomes = await TransactionFinder.get(`/sumincomes`);
       const expenses = await TransactionFinder.get(`/sumexpenses`);
       const totalIncomes =  incomes.data.data.transactions;
       const totalExpenses = expenses.data.data.transactions;
-
       balance = (totalIncomes-totalExpenses);
 console.log(balance);
+      } catch (err) {
+        console.log(err)
+      }
   };  
   fetchDataBalance();  
-
 }, []);
-
-    // const userBalance = 
-
   return (
     
     <div>
