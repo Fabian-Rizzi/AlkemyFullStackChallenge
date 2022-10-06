@@ -9,7 +9,7 @@ id BIGSERIAL NOT NULL PRIMARY KEY,
 name VARCHAR(40) NOT NULL,
 amount BIGINT NOT NULL,
 day DATE NOT NULL,
-isIncome BOOLEAN NOT NULL,
+isincome BOOLEAN NOT NULL,
 category VARCHAR(20) NOT NULL,
 user_id BIGINT NOT NULL REFERENCES users(user_id)
 );
@@ -19,15 +19,15 @@ INSERT INTO users (user_id, email, password) values (1, 'fabi@mail.com', '123fab
 INSERT INTO users (user_id, email, password) values (2, 'eleo@mail.com', '123eleo');
 INSERT INTO users (user_id, email, password) values (3, 'ari@mail.com', '123ari');
 
-INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ('gas', 5000, '2022-09-15', false ,'car', 1);
-INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ('burger king', 1000, '2022-09-15', false ,'food', 1);
-INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ('brakes', 500, '2022-09-15', false ,'car', 2);
-INSERT INTO transactions (name, amount, day, isIncome, category, user_id) values ('freelancing job', 40000, '2022-09-15', true ,'salary', 1);
+INSERT INTO transactions (name, amount, day, isincome, category, user_id) values ('gas', 5000, '2022-09-15', false ,'car', 1);
+INSERT INTO transactions (name, amount, day, isincome, category, user_id) values ('burger king', 1000, '2022-09-15', false ,'food', 1);
+INSERT INTO transactions (name, amount, day, isincome, category, user_id) values ('brakes', 500, '2022-09-15', false ,'car', 2);
+INSERT INTO transactions (name, amount, day, isincome, category, user_id) values ('freelancing job', 40000, '2022-09-15', true ,'salary', 1);
 
 
-ALTER TABLE transactions RENAME COLUMN type TO isIncome;
+ALTER TABLE transactions RENAME COLUMN type TO isincome;
 
-INSERT INTO transactions (id, name, amount, day, isIncome, category, user_id) values ('10', 'gas', 5000, '2022-09-15', false, 'car', 1);
+INSERT INTO transactions (id, name, amount, day, isincome, category, user_id) values ('10', 'gas', 5000, '2022-09-15', false, 'car', 1);
 
 
 INSERT INTO tablename(id, name, location, price_range) values (123, 'mcdonalds', 'new york', 3);
