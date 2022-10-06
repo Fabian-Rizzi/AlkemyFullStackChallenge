@@ -203,7 +203,7 @@ app.delete("/api/v1/transactions/:id", async (req, res) => {
 
 
 const port = process.env.PORT || 3000;
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`listening in ${port}`);
 });
 
