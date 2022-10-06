@@ -23,7 +23,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "express":"*",
+    "express":"^8.11.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "nodemon": "^2.0.19",
