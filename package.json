@@ -29,7 +29,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "nodemon": "^2.0.19",
-    "pg": "^8.8.0"},
+    "pg": "^8.8.0",
+    "webpack": "*"},
   "bugs": {
     "url": "https://github.com/Fabian-Rizzi/AlkemyFullStackChallenge/issues"
   },
