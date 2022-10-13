@@ -18,7 +18,6 @@ const BalanceProvider = ({children}) => {
         const result = (totalIncomes-totalExpenses);
         console.log('hola');
         setBalance(result);
-  
         } catch (err) {
           console.log(err)
         }

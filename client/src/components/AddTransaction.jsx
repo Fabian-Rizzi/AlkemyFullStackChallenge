@@ -4,11 +4,16 @@ import { useState } from 'react'
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
 import { TransactionsContextCopy } from '../context/TransactionsContextCopy';
+import ShowBalance from './ShowBalance';
+import { BalanceContext } from '../context/BalanceContext.js';
 
 
 const AddTransaction = () => {
     const {addTransactions} = useContext(TransactionsContext); // might go inside if true block
     const {addTransactionsExp} = useContext(TransactionsContextCopy); // might go inside else block
+
+    const { fetchDataBalance } = useContext(BalanceContext);
+
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [day, setDay] = useState("");
@@ -29,6 +34,7 @@ const AddTransaction = () => {
             });
             addTransactions(response.data.data.transaction);
             console.log(response);
+            fetchDataBalance();
         } catch (err) {
             console.log(err);
         }
@@ -47,6 +53,7 @@ const AddTransaction = () => {
             });
             addTransactionsExp(response.data.data.transaction);
             console.log(response);
+            fetchDataBalance();
         } catch (err) {
         }
     }

@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContextCopy } from '../context/TransactionsContextCopy';
+import { BalanceContext } from '../context/BalanceContext.js';
 
 const TransactionListCopy = (props) => {
     const {transactionsExp, setTransactionsExp} = useContext(TransactionsContextCopy);
     let navigate = useNavigate();
-
+    const { fetchDataBalance } = useContext(BalanceContext);
     useEffect( ()  => {
         const fetchDataExp = async () =>{
         try {
@@ -28,6 +29,7 @@ const TransactionListCopy = (props) => {
             setTransactionsExp(transactionsExp.filter((transactionExp) => {
                 return transactionExp.id !== id
             }))
+            fetchDataBalance();
             console.log(response);
         } catch (err) {
             console.log(err);

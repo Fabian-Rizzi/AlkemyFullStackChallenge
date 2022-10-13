@@ -166,15 +166,15 @@ app.post("/api/v1/transactions", async (req, res) => {
 app.put("/api/v1/transactions/:id", async (req, res) => {
     try {
     const results = await db.query("UPDATE transactions SET name = $1, amount = $2, day = $3, isincome = $4, category = $5, user_id = $6 where id = $7 returning *", 
-    [req.bodnpmy.name, req.body.amount, req.body.day, req.body.isincome, req.body.category, req.body.user_id, req.params.id]);
-    // console.log(results);
+    [req.body.name, req.body.amount, req.body.day, req.body.isincome, req.body.category, req.body.user_id, req.params.id]);
+    console.log(results);
     res.status(200).json({
         status: "success",
         data: {
             transaction: results.rows[0],
         },
     });
-    } catch (err) {
+    } catch (err) { 
         console.log(err);
     }
 });
@@ -191,7 +191,7 @@ app.delete("/api/v1/transactions/:id", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-});
+}); 
 
 
 const port = process.env.PORT || 3000;

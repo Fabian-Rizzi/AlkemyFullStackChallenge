@@ -56,6 +56,8 @@ navigate("/");
 
         const handleSubmit = async (e) => {
             e.preventDefault();
+            
+            
             try {
             const updatedTransaction = await TransactionFinder.put(`/${id}`, {
                 name,
@@ -65,7 +67,12 @@ navigate("/");
                 category,
                 user_id: 1
             });
+            
+            console.log('test');
+            //console.log(updatedTransaction);
+            
             navigate("/");
+
         } catch (err) {
             console.log(err);
         }};
