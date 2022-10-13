@@ -110,7 +110,7 @@ navigate("/");
                 </div>
                 <div className="col">
                 <label htmlFor="isincome">Type:</label>
-                    <select value={isincome} onChange={e => setIsIncome(e.target.value)} id='type' className='custom-select my-1 mr-sm-5'>
+                    <select value={isincome} onChange={e => setIsIncome(e.target.value)} id='type' className='custom-select my-1 mr-sm-5' disabled>
                         <option disabled>Income/Expense</option>
                         <option value='t'>Income</option>
                         <option value="false">Expense</option>

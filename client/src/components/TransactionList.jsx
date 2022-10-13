@@ -55,6 +55,8 @@ const TransactionList = (props) => {
     }
 
   return (
+    <div>
+        <h2 className='text-center'>Incomes:</h2>
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
@@ -62,7 +64,6 @@ const TransactionList = (props) => {
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>
                     <th scope='col'>Date</th>
-                    <th scope='col'>Income</th>
                     <th scope='col'>Category</th>
                     <th scope='col'>Edit</th>
                     <th scope='col'>Delete</th>
@@ -75,7 +76,6 @@ const TransactionList = (props) => {
                         <td>{transaction.name}</td>
                         <td>{transaction.amount}</td>
                         <td>{formatDate(transaction.day)}</td>
-                        <td>{String(transaction.isincome)}</td>
                         <td>{transaction.category}</td>
                         <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
@@ -103,6 +103,7 @@ const TransactionList = (props) => {
                 </tr> */}
             </tbody>
         </table>
+    </div>
     </div>
   )
 }

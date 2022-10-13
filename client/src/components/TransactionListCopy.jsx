@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContextCopy } from '../context/TransactionsContextCopy';
 import { BalanceContext } from '../context/BalanceContext.js';
@@ -38,7 +37,6 @@ const TransactionListCopy = (props) => {
     const handleUpdate = (id) => {
         // e.stopPropagation();
         navigate(`/transactions/${id}/update`);
-
     };
 
 
@@ -58,6 +56,8 @@ const TransactionListCopy = (props) => {
     }
 
   return (
+    <div>
+        <h2 className='text-center'>Expenses:</h2>
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
@@ -65,7 +65,6 @@ const TransactionListCopy = (props) => {
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>
                     <th scope='col'>Date</th>
-                    <th scope='col'>Income</th>
                     <th scope='col'>Category</th>
                     <th scope='col'>Edit</th>
                     <th scope='col'>Delete</th>
@@ -78,7 +77,6 @@ const TransactionListCopy = (props) => {
                         <td>{transactionExp.name}</td>
                         <td>{transactionExp.amount}</td>
                         <td>{formatDate(transactionExp.day)}</td>
-                        <td>{String(transactionExp.isincome)}</td>
                         <td>{transactionExp.category}</td>
                         <td><button onClick={() => handleUpdate(transactionExp.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transactionExp.id)} className="btn btn-danger">Delete</button></td>
@@ -106,6 +104,7 @@ const TransactionListCopy = (props) => {
                 </tr> */}
             </tbody>
         </table>
+    </div>
     </div>
   )
 }
