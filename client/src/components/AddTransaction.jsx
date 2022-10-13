@@ -3,18 +3,22 @@ import { useContext } from 'react';
 import { useState } from 'react'
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
+import { TransactionsContextCopy } from '../context/TransactionsContextCopy';
 
 
 const AddTransaction = () => {
-    const {addTransactions} = useContext(TransactionsContext);
+    const {addTransactions} = useContext(TransactionsContext); // might go inside if true block
+    const {addTransactionsExp} = useContext(TransactionsContextCopy); // might go inside else block
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
     const [day, setDay] = useState("");
     const [category, setCategory] = useState("Select Category");
     const [isincome, setIsIncome] = useState("Income/Expense");
     const handleSubmit = async (e) => {
+        if (isincome == "t") {
         e.preventDefault();
         try {
+            console.log("true");  
             const response = await TransactionFinder.post("/", {
                 name,
                 amount,
@@ -26,7 +30,26 @@ const AddTransaction = () => {
             addTransactions(response.data.data.transaction);
             console.log(response);
         } catch (err) {
+            console.log(err);
         }
+    } else {
+        // add expense
+        e.preventDefault();
+        console.log("false");   
+        try {
+            const response = await TransactionFinder.post("/", {
+                name,
+                amount,
+                day,
+                category,
+                isincome,
+                user_id: 1
+            });
+            addTransactionsExp(response.data.data.transaction);
+            console.log(response);
+        } catch (err) {
+        }
+    }
     }
     return (
     <div className='mb-4'>  

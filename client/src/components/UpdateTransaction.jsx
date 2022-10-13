@@ -14,12 +14,13 @@ const UpdateTransaction = (props) => {
     const [day, setDay] = useState("");
     const [category, setCategory] = useState("Select Category");
     const [isincome, setIsIncome] = useState("Income/Expense");
-
     const fetchData = async () => {
         const response = await TransactionFinder.get(`/${id}`);
+
+        
+
         const dateTime = response.data.data.transactions.day;                
-        setName(response.data.data.transactions.name);
-        setAmount(response.data.data.transactions.amount);
+
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -35,8 +36,9 @@ const UpdateTransaction = (props) => {
         }
 
         console.log(formatDate(dateTime));
+        setName(response.data.data.transactions.name);
+        setAmount(response.data.data.transactions.amount);
         setDay(formatDate(dateTime));
-
         setCategory(response.data.data.transactions.category);
         setIsIncome(response.data.data.transactions.isincome);
     };
@@ -53,17 +55,20 @@ navigate("/");
         
 
         const handleSubmit = async (e) => {
-            e.preventDefault()
-            // const updatedTransaction = await TransactionFinder.put(`/${id}`, {
-            //     name,
-            //     amount,
-            //     day,
-            //     isincome,
-            //     category,
-            //     user_id: 1
-            // });
+            e.preventDefault();
+            try {
+            const updatedTransaction = await TransactionFinder.put(`/${id}`, {
+                name,
+                amount,
+                day,
+                isincome,
+                category,
+                user_id: 1
+            });
             navigate("/");
-        }
+        } catch (err) {
+            console.log(err);
+        }};
 
   return (
     <div>
