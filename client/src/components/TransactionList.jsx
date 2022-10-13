@@ -52,7 +52,10 @@ const TransactionList = (props) => {
         if (day.length < 2) 
             day = '0' + day;    
         return [year, month, day].join('-');
-    }
+    };
+    
+
+
 
   return (
     <div>
@@ -73,10 +76,12 @@ const TransactionList = (props) => {
                 {transactions && transactions.map(transaction => {
                     return (
                     <tr key={transaction.id}>
-                        <td>{transaction.name}</td>
+                        {/* first letter in name is capitalzed */}
+                        <td>{(transaction.name).charAt(0).toUpperCase() + (transaction.name).slice(1)}</td>
                         <td>{transaction.amount}</td>
                         <td>{formatDate(transaction.day)}</td>
-                        <td>{transaction.category}</td>
+                        {/* first letter in category is capitalized */}
+                        <td>{(transaction.category).charAt(0).toUpperCase() + (transaction.category).slice(1)}</td>
                         <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
                     </tr>

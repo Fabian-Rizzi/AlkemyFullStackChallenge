@@ -74,10 +74,12 @@ const TransactionListCopy = (props) => {
                 {transactionsExp && transactionsExp.map(transactionExp => {
                     return (
                     <tr key={transactionExp.id}>
-                        <td>{transactionExp.name}</td>
+                        {/* first letter in category is capitalized */}
+                        <td>{(transactionExp.name).charAt(0).toUpperCase()+(transactionExp.name).slice(1)}</td>
                         <td>{transactionExp.amount}</td>
                         <td>{formatDate(transactionExp.day)}</td>
-                        <td>{transactionExp.category}</td>
+                        {/* first letter in category is capitalized */}
+                        <td>{(transactionExp.category).charAt(0).toUpperCase()+(transactionExp.category).slice(1)}</td>
                         <td><button onClick={() => handleUpdate(transactionExp.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transactionExp.id)} className="btn btn-danger">Delete</button></td>
                     </tr>
