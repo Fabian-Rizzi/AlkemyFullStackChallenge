@@ -5,17 +5,13 @@ const { nextTick } = require("process");
 const db = require('./db')
 const app = express();
 
-
 //Middleware
+
 app.use(cors());
 app.use(express.json());
-
-
 app.use((req, res, next) => {
     next();
 });
-
-
 
 //Get all transactions
 
@@ -33,8 +29,7 @@ const results = await db.query("select * from transactions ");
     });
     } catch (err) {
         console.log(err);
-    }
-    
+    }    
 });
 
 
@@ -42,7 +37,6 @@ const results = await db.query("select * from transactions ");
 //Get all income transactions
 
 app.get("/api/v1/transactions/incomes", async (req, res) => {
-
     try {
 const results = await db.query("select * from transactions where isincome = true");
     // console.log(results);
@@ -50,19 +44,17 @@ const results = await db.query("select * from transactions where isincome = true
         status: "success",
         results: results.rows.length,
         data: {
-            transactions: results.rows            
+            transactions: results.rows
         },
     });
     } catch (err) {
         console.log(err);
     }
-    
 });
 
 //Get all expense transactions
 
 app.get("/api/v1/transactions/expenses", async (req, res) => {
-
     try {
 const results = await db.query("select * from transactions where isincome = false");
     // console.log(results);

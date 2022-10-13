@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
 
+import { BalanceContext } from '../context/BalanceContext.js';
+
 
 const TransactionList = (props) => {
     const {transactions, setTransactions} = useContext(TransactionsContext);
     let navigate = useNavigate();
-
+    const { fetchDataBalance } = useContext(BalanceContext);
     useEffect( ()  => {
         const fetchData = async () =>{       
         try {
@@ -25,9 +27,11 @@ const TransactionList = (props) => {
     const handleDelete = async (id) => {
         try{
             const response = await TransactionFinder.delete(`/${id}`);
+
             setTransactions(transactions.filter((transaction) => {
                 return transaction.id !== id
             }))
+            fetchDataBalance();
             console.log(response);
         } catch (err) {
             console.log(err);

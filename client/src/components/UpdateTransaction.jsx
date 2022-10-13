@@ -15,32 +15,34 @@ const UpdateTransaction = (props) => {
     const [category, setCategory] = useState("Select Category");
     const [isincome, setIsIncome] = useState("Income/Expense");
 
+    const fetchData = async () => {
+        const response = await TransactionFinder.get(`/${id}`);
+        const dateTime = response.data.data.transactions.day;                
+        setName(response.data.data.transactions.name);
+        setAmount(response.data.data.transactions.amount);
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+        
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+        
+            return [year, month, day].join('-');
+        }
+
+        console.log(formatDate(dateTime));
+        setDay(formatDate(dateTime));
+
+        setCategory(response.data.data.transactions.category);
+        setIsIncome(response.data.data.transactions.isincome);
+    };
+
         useEffect(() => {
-            const fetchData = async () => {
-                const response = await TransactionFinder.get(`/${id}`);
-                const dateTime = response.data.data.transactions.day;                
-                setName(response.data.data.transactions.name);
-                setAmount(response.data.data.transactions.amount);
-                function formatDate(date) {
-                    var d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + d.getDate(),
-                        year = d.getFullYear();
-                
-                    if (month.length < 2) 
-                        month = '0' + month;
-                    if (day.length < 2) 
-                        day = '0' + day;
-                
-                    return [year, month, day].join('-');
-                }
 
-                console.log(formatDate(dateTime));
-                setDay(formatDate(dateTime));
-
-                setCategory(response.data.data.transactions.category);
-                setIsIncome(response.data.data.transactions.isincome);
-            };
             fetchData();
         }, []);
 
@@ -102,7 +104,7 @@ navigate("/");
                         <option value="false">Expense</option>
                     </select>
                 </div>
-                <button type='submit' onClick={handleSubmit} className='btn btn-primary'>Submit</button>
+                <button type='submit' onClick={handleSubmit} className='btn btn-primary'>Submit</button>&#160;
                 <button onClick={goBack} className='btn btn-primary'>Back</button>
         </form>
     </div>

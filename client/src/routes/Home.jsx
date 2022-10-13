@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import ShowBalance from '../components/ShowBalance'
 import TransactionList from '../components/TransactionList'
 import TransactionListCopy from '../components/TransactionListCopy'
+import { balance } from '../components/ShowBalance';
 
 const Home = () => {
   return (

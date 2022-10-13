@@ -4,6 +4,7 @@ import { useState } from 'react'
 import TransactionFinder from '../apis/TransactionFinder';
 import { TransactionsContext } from '../context/TransactionsContext';
 
+
 const AddTransaction = () => {
     const {addTransactions} = useContext(TransactionsContext);
     const [name, setName] = useState("");
@@ -61,6 +62,7 @@ const AddTransaction = () => {
                         <option value="false">Expense</option>
                     </select>
                 </div>
+                <br /> <br />
                 <button onClick={handleSubmit} type='submit' className="btn btn-primary ms-4">Add</button>
             </div>
         </form>

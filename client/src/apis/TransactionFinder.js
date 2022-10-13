@@ -1,5 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://wifinances-alk.herokuapp.com/api/v1/transactions",
+    baseURL: "http://localhost:3000/api/v1/transactions",
+    // url for deployment:
+    // baseURL: "https://wifinances-alk.herokuapp.com/api/v1/transactions",
 });
