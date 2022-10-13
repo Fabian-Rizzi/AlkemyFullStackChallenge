@@ -65,7 +65,7 @@ const TransactionListCopy = (props) => {
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>
                     <th scope='col'>Date</th>
-                    <th scope='col'>Type</th>
+                    <th scope='col'>Income</th>
                     <th scope='col'>Category</th>
                     <th scope='col'>Edit</th>
                     <th scope='col'>Delete</th>
