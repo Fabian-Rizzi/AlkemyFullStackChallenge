@@ -63,17 +63,17 @@ const AddTransaction = () => {
         <form action="">
             <div className="form-group row">
                 <div className="col">
-                    <input type="text" value={name} onChange={e => setName(e.target.value)} className='form-control' placeholder='name'/>
+                    <input type="text" value={name} onChange={e => setName(e.target.value)} className='form-control text-center' placeholder='Name'/>
                 </div>
-                <div className="col-sm">
-                    <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className='form-control' placeholder='amount'/>
+                <div className="col-md">
+                    <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className='form-control text-center' placeholder='Amount'/>
                 </div>
-                <div className="col-sm">
-                    <input type="date" value={day} onChange={e => setDay(e.target.value)} className='form-control' placeholder='date'/>
+                <div className="col-md">
+                    <input type="date" value={day} onChange={e => setDay(e.target.value)} className='form-control text-center' placeholder='Date'/>
                 </div>
                 
-                <div className="col-sm">
-                    <select value={category} onChange={e => setCategory(e.target.value)} className='custom-select my-1 mr-sm-5'>
+                <div className="col-md text-center">
+                    <select value={category} onChange={e => setCategory(e.target.value)} className='custom-select my-1 p-1 mr-sm-5 rounded'>
                         <option disabled>Select Category</option>
                         <option value="salary">Salary</option>
                         <option value="healthcare">Healthcare</option>
@@ -87,8 +87,8 @@ const AddTransaction = () => {
                     </select>
                 </div>
                 
-                <div className="col-sm">
-                    <select value={isincome} onChange={e => setIsIncome(e.target.value)} className='custom-select my-1 mr-sm-5'>
+                <div className="col-md text-center">
+                    <select value={isincome} onChange={e => setIsIncome(e.target.value)} className='custom-select my-1 p-1 mr-sm-5 rounded'>
                         <option disabled>Income/Expense</option>
                         <option value='t'>Income</option>
                         <option value="false">Expense</option>
