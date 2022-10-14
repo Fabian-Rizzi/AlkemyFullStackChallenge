@@ -57,7 +57,7 @@ const TransactionListCopy = (props) => {
 
   return (
     <div>
-        <h2 className='text-center'>Expenses:</h2>
+        <h2 className='text-center font-weight-light display-6'>Expenses:</h2>
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>

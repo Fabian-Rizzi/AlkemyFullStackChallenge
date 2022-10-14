@@ -59,13 +59,13 @@ const TransactionList = (props) => {
 
   return (
     <div>
-        <h2 className='text-center'>Incomes:</h2>
+        <h2 className='text-center font-weight-light display-6'>Incomes:</h2>
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
                 <tr className="bg-primary">
                     <th scope='col'>Name</th>
-                    <th scope='col'>Amount</th>
+                    <th scope='col'>Amount</th>     
                     <th scope='col'>Date</th>
                     <th scope='col'>Category</th>
                     <th scope='col'>Edit</th>
