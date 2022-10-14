@@ -61,7 +61,7 @@ const TransactionListCopy = (props) => {
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
-                <tr className="bg-primary">
+                <tr className="text-light bg-dark h5">
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>
                     <th scope='col'>Date</th>
@@ -75,11 +75,11 @@ const TransactionListCopy = (props) => {
                     return (
                     <tr key={transactionExp.id}>
                         {/* first letter in category is capitalized */}
-                        <td>{(transactionExp.name).charAt(0).toUpperCase()+(transactionExp.name).slice(1)}</td>
+                        <td className='text-capitalize'>{transactionExp.name}</td>
                         <td>{transactionExp.amount}</td>
                         <td>{formatDate(transactionExp.day)}</td>
                         {/* first letter in category is capitalized */}
-                        <td>{(transactionExp.category).charAt(0).toUpperCase()+(transactionExp.category).slice(1)}</td>
+                        <td className='text-capitalize'>{transactionExp.category}</td>
                         <td><button onClick={() => handleUpdate(transactionExp.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transactionExp.id)} className="btn btn-danger">Delete</button></td>
                     </tr>

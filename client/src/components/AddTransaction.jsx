@@ -91,10 +91,14 @@ const AddTransaction = () => {
                         <option value='t'>Income</option>
                         <option value="false">Expense</option>
                     </select>
+                   
                 </div>
-                <br /> <br />
-                <button onClick={handleSubmit} type='submit' className="btn btn-primary ms-4">Add</button>
+                
+                <button onClick={handleSubmit} type='submit' className="btn btn-primary mt-5 d-grid gap-2 col-7 mx-auto btn-primary btn-lg">Add</button>
+                
             </div>
+            <br />
+                    
         </form>
     </div>
   )

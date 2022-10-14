@@ -10,11 +10,12 @@ const { balance, fetchDataBalance } = useContext(BalanceContext);
 
   fetchDataBalance();  
 }, []);
+
   return (
     
     <div>
-        <h1 className='text-center display-4' id='balance'>Balance: {balance}</h1>
-        <h1></h1>
+        <h1 className='text-center display-4 ' id='balance'>Balance: {balance}</h1>
+        
     </div>
   )
 }

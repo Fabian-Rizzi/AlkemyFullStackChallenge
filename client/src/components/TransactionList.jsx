@@ -63,7 +63,7 @@ const TransactionList = (props) => {
     <div className='list-group'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
-                <tr className="bg-primary">
+                <tr className="text-light bg-dark h5">
                     <th scope='col'>Name</th>
                     <th scope='col'>Amount</th>     
                     <th scope='col'>Date</th>
@@ -77,11 +77,11 @@ const TransactionList = (props) => {
                     return (
                     <tr key={transaction.id}>
                         {/* first letter in name is capitalzed */}
-                        <td>{(transaction.name).charAt(0).toUpperCase() + (transaction.name).slice(1)}</td>
+                        <td className='text-capitalize'>{transaction.name}</td>
                         <td>{transaction.amount}</td>
                         <td>{formatDate(transaction.day)}</td>
                         {/* first letter in category is capitalized */}
-                        <td>{(transaction.category).charAt(0).toUpperCase() + (transaction.category).slice(1)}</td>
+                        <td className='text-capitalize'>{transaction.category}</td>
                         <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
                         <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
                     </tr>
