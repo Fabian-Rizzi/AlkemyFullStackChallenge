@@ -1,8 +1,8 @@
-# Alkemy - Full Stack Challenge / wifinances.netlify.app
+# Alkemy - Full Stack Challenge 
 
 This is an Expense Tracker App I made for the Full Stack Career Acceleration at Alkemy.
 
-## Status: Deployed at wifinances.netlify.app 
+## Status: [Deployed](http://wifinances.netlify.app).
 
 
 
