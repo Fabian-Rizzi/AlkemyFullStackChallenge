@@ -65,13 +65,14 @@ const AddTransaction = () => {
                 <div className="col">
                     <input type="text" value={name} onChange={e => setName(e.target.value)} className='form-control' placeholder='name'/>
                 </div>
-                <div className="col">
+                <div className="col-sm">
                     <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className='form-control' placeholder='amount'/>
                 </div>
-                <div className="col">
+                <div className="col-sm">
                     <input type="date" value={day} onChange={e => setDay(e.target.value)} className='form-control' placeholder='date'/>
                 </div>
-                <div className="col">
+                
+                <div className="col-sm">
                     <select value={category} onChange={e => setCategory(e.target.value)} className='custom-select my-1 mr-sm-5'>
                         <option disabled>Select Category</option>
                         <option value="salary">Salary</option>
@@ -85,17 +86,18 @@ const AddTransaction = () => {
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div className="col">
+                
+                <div className="col-sm">
                     <select value={isincome} onChange={e => setIsIncome(e.target.value)} className='custom-select my-1 mr-sm-5'>
                         <option disabled>Income/Expense</option>
                         <option value='t'>Income</option>
                         <option value="false">Expense</option>
                     </select>
-                   
-                </div>
+                    </div>
                 
+                <div className="form-group row">
                 <button onClick={handleSubmit} type='submit' className="btn btn-primary mt-5 d-grid gap-2 col-7 mx-auto btn-primary btn-lg">Add</button>
-                
+                </div>
             </div>
             <br />
                     
