@@ -59,8 +59,8 @@ const TransactionList = (props) => {
 
   return (
     <div>
-        <h2 className='text-center font-weight-light display-6'>Incomes:</h2>
-    <div className='list-group'>
+        <h2 className='text-center font-weight-light display-6 '>Incomes:</h2>
+    <div className='list-group table-responsive'>
         <table className="table table-hover table-striped">
             <thead className='thead-dark'>
                 <tr className="text-light bg-dark h5">
@@ -68,8 +68,8 @@ const TransactionList = (props) => {
                     <th scope='col'>Amount</th>     
                     <th scope='col'>Date</th>
                     <th scope='col'>Category</th>
-                    <th scope='col'>Edit</th>
-                    <th scope='col'>Delete</th>
+                    <th scope='col' className=''>Edit</th>
+                    <th scope='col' className=''>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,8 +83,8 @@ const TransactionList = (props) => {
                         {/* first letter in category is capitalized */}
                         <td className='text-capitalize'>{transaction.category}</td>
                         <td><button onClick={() => handleUpdate(transaction.id)} className="btn btn-warning">Update</button></td>
-                        <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger">Delete</button></td>
-                    </tr>
+                        <td><button onClick={() => handleDelete(transaction.id)} className="btn btn-danger ">Delete</button></td>
+                        </tr>
                     )
 
                 })}
